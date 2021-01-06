@@ -33,10 +33,18 @@ const server = http.createServer((req, res) => {
     res.writeHead(200, { "content-type": "text/html " });
     //write the body out:
     //with res.write we just hand it any body we want
-    res.write("");
+    // res.write("");
+    const homePageHTML = fs.readFileSync("node.html");
+
+    res.write(homePageHTML);
     //last thing:
     //   we put a res.end() to let the browser know that we're ready to close the connection
     //we can actually put the <h1> in res.end() but will keep them separate for now
+    res.end();
+  } else if (req.url === "/node.png") {
+    res.writeHead(200, { "content-type": "image/png" });
+    const image = fs.readFileSync("node.png");
+    res.write(image);
     res.end();
   } else {
     res.writeHead(404, { "content-type": "text/html " });
