@@ -12,6 +12,7 @@ const http = require("http");
 //the createServer method takes a single function or a callback and the callback gets the request and the response objects
 //createServer is a function that takes a callback to run and that will happen whenever a http request is made
 const server = http.createServer((req, res) => {
+  console.log(req.url);
   //   console.log(req); this doesnt work because the browser needs a reponse to know that we are actually finished
   // res = our way of responding to the requester
   // an http  message consists of:
@@ -26,7 +27,7 @@ const server = http.createServer((req, res) => {
   res.writeHead(200, { "content-type": "text/html " });
   //write the body out:
   //with res.write we just hand it any body we want
-  res.write("<h1>Hello World!!!</h1>");
+  res.write("<h1>This is the homepage!</h1>");
   //last thing:
   //   we put a res.end() to let the browser know that we're ready to close the connection
   //we can actually put the <h1> in res.end() but will keep them separate for now
