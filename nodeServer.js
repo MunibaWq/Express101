@@ -22,11 +22,11 @@ const server = http.createServer((req, res) => {
   //res.writeHead()
   //writeHead takes 2 args:
   //   1. status code - 200
-  //  2. object for the mime-type - text/html, that will actually write out our headers
+  //  2. object for the mime-type - text/html,text/plain, text/css etc.. that will actually write out our headers
   res.writeHead(200, { "content-type": "text/html " });
   //write the body out:
   //with res.write we just hand it any body we want
-  res.write("<h1>Hello World</h1>");
+  res.write("<h1>Hello World!!!</h1>");
   //last thing:
   //   we put a res.end() to let the browser know that we're ready to close the connection
   //we can actually put the <h1> in res.end() but will keep them separate for now
@@ -41,3 +41,7 @@ server.listen(3000);
 
 //type in nodemon nodeServer.js in terminal to get server running
 //go to localhost:3000 on browser
+
+//lastly: we can run
+//curl -v localhost:3000
+//in our terminal to see what the http reponse looks like in a curl format
