@@ -12,26 +12,32 @@ const http = require("http");
 //the createServer method takes a single function or a callback and the callback gets the request and the response objects
 //createServer is a function that takes a callback to run and that will happen whenever a http request is made
 const server = http.createServer((req, res) => {
-  console.log(req.url);
-  //   console.log(req); this doesnt work because the browser needs a reponse to know that we are actually finished
-  // res = our way of responding to the requester
-  // an http  message consists of:
-  // 1. the start-line -CHECK
-  // 2. the header
-  // 3. the body
-  //so we need to write the header out:
-  //res.writeHead()
-  //writeHead takes 2 args:
-  //   1. status code - 200
-  //  2. object for the mime-type - text/html,text/plain, text/css etc.. that will actually write out our headers
-  res.writeHead(200, { "content-type": "text/html " });
-  //write the body out:
-  //with res.write we just hand it any body we want
-  res.write("<h1>This is the homepage!</h1>");
-  //last thing:
-  //   we put a res.end() to let the browser know that we're ready to close the connection
-  //we can actually put the <h1> in res.end() but will keep them separate for now
-  res.end();
+  if (req.url === "/") {
+    //the user wants the homepage, we know because the req object has / in the url property
+    //   console.log(req); this doesnt work because the browser needs a reponse to know that we are actually finished
+    // res = our way of responding to the requester
+    // an http  message consists of:
+    // 1. the start-line -CHECK
+    // 2. the header
+    // 3. the body
+    //so we need to write the header out:
+    //res.writeHead()
+    //writeHead takes 2 args:
+    //   1. status code - 200
+    //  2. object for the mime-type - text/html,text/plain, text/css etc.. that will actually write out our headers
+    res.writeHead(200, { "content-type": "text/html " });
+    //write the body out:
+    //with res.write we just hand it any body we want
+    res.write("<h1>This is the homepage!</h1>");
+    //last thing:
+    //   we put a res.end() to let the browser know that we're ready to close the connection
+    //we can actually put the <h1> in res.end() but will keep them separate for now
+    res.end();
+  } else {
+    res.writeHead(404, { "content-type": "text/html " });
+    res.write("<h1>Sorry, this isn't the page you're looking for! </h1>");
+    res.end();
+  }
 });
 
 //an http request is made when ever this port (3000)gets a request via listen:
