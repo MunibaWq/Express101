@@ -1,6 +1,11 @@
 //http is native to nodejs. we just have to ask for it we dont have to install it
 const http = require("http");
 
+//instead of res.write writing our <h1> we are going to read the contents of that file:
+//fs = file system module! fs is built into Node
+//fs gives node access to THIS computers file system
+const fs = require("fs");
+
 //the http moduale has a createServer method
 
 //takes 1 arg:
@@ -28,7 +33,7 @@ const server = http.createServer((req, res) => {
     res.writeHead(200, { "content-type": "text/html " });
     //write the body out:
     //with res.write we just hand it any body we want
-    res.write("<h1>This is the homepage!</h1>");
+    res.write("");
     //last thing:
     //   we put a res.end() to let the browser know that we're ready to close the connection
     //we can actually put the <h1> in res.end() but will keep them separate for now
