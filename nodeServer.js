@@ -17,6 +17,7 @@ const fs = require("fs");
 //the createServer method takes a single function or a callback and the callback gets the request and the response objects
 //createServer is a function that takes a callback to run and that will happen whenever a http request is made
 const server = http.createServer((req, res) => {
+  console.log(`A request waas made to: ${req.url}`);
   if (req.url === "/") {
     //the user wants the homepage, we know because the req object has / in the url property
     //   console.log(req); this doesnt work because the browser needs a reponse to know that we are actually finished
@@ -45,6 +46,11 @@ const server = http.createServer((req, res) => {
     res.writeHead(200, { "content-type": "image/png" });
     const image = fs.readFileSync("node.png");
     res.write(image);
+    res.end();
+  } else if (req.url === "/styles.css") {
+    res.writeHead(200, { "content-type": "text/css" });
+    const css = fs.readFileSync("styles.css");
+    res.write(css);
     res.end();
   } else {
     res.writeHead(404, { "content-type": "text/html " });
