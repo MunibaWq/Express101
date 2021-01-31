@@ -1,0 +1,10 @@
+**/node_modules
+.vscode
+**/.eslintcache
+.env*
+
+/.vs/
+
+/.vs/
+/.vs
+**/db/baßckup*.js
